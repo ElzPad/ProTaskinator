@@ -21,6 +21,9 @@
   margin-top: -8px;
   width: 36px;
 }
+.navbar .logo span {
+  font-weight: 600;
+} 
 .navbar a {
   color: #000;
   text-decoration: none;
