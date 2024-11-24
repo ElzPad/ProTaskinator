@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "es5",
+  "importOrder": [
+    "^react$",
+    "^@?\\w",
+    "^[./]"
+  ]
+}
