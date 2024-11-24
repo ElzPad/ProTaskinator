@@ -1,25 +1,20 @@
+import { signOut } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { projectAuth } from '../firebase/config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
-export const useLogin = () => {
+export const useLogout = () => {
   const [isCancelled, setIsCancelled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
+  const logout = () => {
+    setIsLoading(false);
     setError(null);
 
     try {
-      const res = await signInWithEmailAndPassword(
-        projectAuth,
-        email,
-        password
-      );
+      const res = signOut(projectAuth);
 
-      if (!res) throw new Error('Unable to complete login');
-      console.log(res);
+      if (!res) throw new Error('Unable to complete logout');
 
       if (!isCancelled) {
         setIsLoading(false);
@@ -37,5 +32,5 @@ export const useLogin = () => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { login, error, isLoading };
+  return { logout, error, isLoading };
 };
