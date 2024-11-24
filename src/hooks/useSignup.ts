@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { projectAuth } from '../firebase/config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState<boolean>(false);
 
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { dispatch } = useAuthContext();
 
   const signup = async (
     email: string,
@@ -23,7 +26,8 @@ export const useSignup = () => {
         password
       );
       if (!res) throw new Error('Unable to complete signup');
-      console.log(res);
+
+      dispatch({ type: 'LOGIN', payload: res.user });
 
       if (projectAuth.currentUser)
         updateProfile(projectAuth.currentUser, { displayName });

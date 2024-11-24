@@ -3,13 +3,19 @@ import { NavLink } from 'react-router-dom';
 import Icon from '../../../assets/logoIcon.svg';
 import { useLogout } from '../../../hooks/useLogout';
 import { useEffect } from 'react';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 export default function Navbar() {
   const { logout, error, isLoading } = useLogout();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (error) console.log(error);
   }, [error]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <div className="navbar">

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { projectAuth } from '../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthContext } from './useAuthContext';
 
 export const useLogin = () => {
   const [isCancelled, setIsCancelled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { dispatch } = useAuthContext();
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
@@ -19,7 +22,8 @@ export const useLogin = () => {
       );
 
       if (!res) throw new Error('Unable to complete login');
-      console.log(res);
+
+      dispatch({ type: 'LOGIN', payload: res.user });
 
       if (!isCancelled) {
         setIsLoading(false);
