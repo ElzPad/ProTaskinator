@@ -25,29 +25,35 @@ export default function Navbar() {
           <span>ProTaskinator</span>
         </li>
 
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup">Signup</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-
-        {!isLoading && (
-          <li>
-            <button className="btn" onClick={() => logout()}>
-              Logout
-            </button>
-          </li>
+        {!user && (
+          <>
+            <li>
+              <NavLink to="/signup">Signup</NavLink>
+            </li>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+          </>
         )}
-        {isLoading && (
-          <li>
-            <button className="btn" disabled>
-              ...
-            </button>
-          </li>
+
+        {user && (
+          <>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              {!isLoading && (
+                <button className="btn" onClick={() => logout()}>
+                  Logout
+                </button>
+              )}
+              {isLoading && (
+                <button className="btn" disabled>
+                  ...
+                </button>
+              )}
+            </li>
+          </>
         )}
       </ul>
     </div>
