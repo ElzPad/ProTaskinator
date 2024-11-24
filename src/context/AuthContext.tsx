@@ -31,7 +31,7 @@ export const AuthContextProvider: React.FC<providerProps> = ({ children }) => {
 
   useEffect(() => {
     const unsub = projectAuth.onAuthStateChanged((user) => {
-      dispatch({ type: 'AUTH_IS_READY', payload: null });
+      dispatch({ type: 'AUTH_IS_READY', payload: user });
       unsub();
     });
   }, []);
