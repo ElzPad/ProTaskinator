@@ -1,18 +1,19 @@
 import { createContext, useEffect, useReducer } from 'react';
-import { authAction, authState, providerProps } from './AuthContext.types';
+import { AuthAction, AuthState } from './AuthContext.types';
+import { ChildrenProps } from '../types/global';
 import { projectAuth } from '../firebase/config';
 
 export const AuthContext = createContext<
-  | (authState & {
-      dispatch: React.Dispatch<authAction>;
+  | (AuthState & {
+      dispatch: React.Dispatch<AuthAction>;
     })
   | undefined
 >(undefined);
 
 export const authReducer = (
-  state: authState,
-  action: authAction
-): authState => {
+  state: AuthState,
+  action: AuthAction
+): AuthState => {
   switch (action.type) {
     case 'LOGIN':
       return { ...state, user: action.payload };
@@ -25,7 +26,7 @@ export const authReducer = (
   }
 };
 
-export const AuthContextProvider: React.FC<providerProps> = ({ children }) => {
+export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
     authIsReady: false,
