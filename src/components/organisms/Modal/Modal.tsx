@@ -3,7 +3,7 @@ import './Modal.css';
 import { ChildrenProps } from '../../../types/global';
 
 export default function Modal({ children }: ChildrenProps) {
-  const [isOpened, setIsOpened] = useState<boolean>(true);
+  const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const toggleIsOpened = () => {
     setIsOpened((prevState) => {
