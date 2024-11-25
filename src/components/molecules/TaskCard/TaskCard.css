@@ -1,0 +1,18 @@
+.taskCard .label {
+  font-size: 0.9em;
+  color: rebeccapurple;
+  text-decoration: underline;
+}
+
+.cardRow {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cardColumn {
+  min-width: 100px;
+  flex: 1;
+  padding: 10px;
+}
