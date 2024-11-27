@@ -1,25 +1,25 @@
 import TaskCard from '../../components/molecules/TaskCard/TaskCard';
 import Modal from '../../components/organisms/Modal/Modal';
-import { timestamp } from '../../firebase/config';
-import { Task } from '../../types/task';
+import { useCollection } from '../../hooks/useCollection';
 import './Home.css';
 
-const task: Task = {
-  uid: 'ciao',
-  email: 'prova1@gmail.com',
-  dueDate: timestamp.fromDate(new Date()),
-  notes: 'Devo ricordare di fare gli inviti.',
-  peopleList: ['Giovanna', 'Lilly', 'Salvo'],
-  tags: ['#uni', '#laurea'],
-};
-
 export default function Home() {
+  const { documents, error } = useCollection('tasks');
+
   return (
     <div>
       <p>Home</p>
-      <Modal>
-        <TaskCard taskInfo={task} />
-      </Modal>
+      {error && <div className="error">{error}</div>}
+      {documents &&
+        documents.map((task) => {
+          return (
+            <div key={task.id}>
+              <Modal status={task.status} title={task.title}>
+                <TaskCard taskInfo={task} />
+              </Modal>
+            </div>
+          );
+        })}
     </div>
   );
 }
