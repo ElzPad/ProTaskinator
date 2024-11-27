@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Task } from '../types/task';
 import { projectFirestore } from '../firebase/config';
 import {
   collection,
@@ -8,8 +7,8 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 
-export const useCollection = (collectionId: string) => {
-  const [documents, setDocuments] = useState<Task[] | null>();
+export function useCollection<Type>(collectionId: string) {
+  const [documents, setDocuments] = useState<Type[] | null>();
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<string | null>();
 
@@ -23,9 +22,9 @@ export const useCollection = (collectionId: string) => {
     let unsubscribe = onSnapshot(
       ref,
       (snapshot) => {
-        let results: Task[] = [];
+        let results: Type[] = [];
         snapshot.docs.forEach((doc) => {
-          let data = { ...doc.data(), id: doc.id } as Task;
+          let data = { ...doc.data(), id: doc.id } as Type;
           results.push(data);
         });
 
@@ -43,4 +42,4 @@ export const useCollection = (collectionId: string) => {
   }, [collection]);
 
   return { documents, isLoading, error };
-};
+}

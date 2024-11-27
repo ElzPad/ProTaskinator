@@ -1,10 +1,11 @@
 import TaskCard from '../../components/molecules/TaskCard/TaskCard';
 import Modal from '../../components/organisms/Modal/Modal';
 import { useCollection } from '../../hooks/useCollection';
+import { Task } from '../../types/task';
 import './Home.css';
 
 export default function Home() {
-  const { documents, error } = useCollection('tasks');
+  const { documents, error } = useCollection<Task>('tasks');
 
   return (
     <div>
