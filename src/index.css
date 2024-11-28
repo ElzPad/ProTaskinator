@@ -49,7 +49,7 @@ label {
   margin: 24px auto;
 }
 label span {
-  display: block;
+  /* display: block; */
   margin-bottom: 6px;
 }
 label img {

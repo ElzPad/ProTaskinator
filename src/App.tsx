@@ -7,6 +7,7 @@ import Signup from './pages/signup/Signup';
 import Login from './pages/login/Login';
 import Task from './pages/task/Task';
 import { useAuthContext } from './hooks/useAuthContext';
+import Create from './pages/create/Create';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -20,11 +21,15 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={user ? <Home /> : <Navigate to="/signup" />}
+                element={user ? <Home /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/create"
+                element={user ? <Create /> : <Navigate to="/login" />}
               />
               <Route
                 path="/task/:id"
-                element={user ? <Task /> : <Navigate to="/" />}
+                element={user ? <Task /> : <Navigate to="/login" />}
               />
               <Route
                 path="/signup"
