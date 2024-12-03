@@ -6,6 +6,7 @@ export interface Task {
   dueDate: timestamp;
   notes: string;
   peopleList: string[];
-  tags: string[];
+  tagsList: string[];
   status: string;
+  requiredTime: string;
 }
