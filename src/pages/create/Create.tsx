@@ -1,5 +1,13 @@
 import './Create.css';
 import React, { useState } from 'react';
+import Select from 'react-select';
+
+const requiredTimeChoices = [
+  { value: '5 minutes', label: '5 minutes' },
+  { value: '30 minutes', label: '30 minutes' },
+  { value: '1 hour', label: '1 hour' },
+  { value: '1 week', label: '1 week' },
+];
 
 export default function Create() {
   const [title, setTitle] = useState<string>('');
@@ -8,11 +16,12 @@ export default function Create() {
   const [newPerson, setNewPerson] = useState<string>('');
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [newTag, setNewTag] = useState<string>('');
+  const [requiredTime, setRequiredTime] = useState<string>('');
   const [status, setStatus] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(title, notes, peopleList, tagsList, status);
+    console.log(title, notes, peopleList, tagsList, requiredTime, status);
   };
 
   const addNewPerson = (e: React.FormEvent) => {
@@ -110,6 +119,13 @@ export default function Create() {
               );
             })}
           </ul>
+        </label>
+        <label>
+          <span>Required time:</span>
+          <Select
+            onChange={(option) => setRequiredTime(option ? option.value : '')}
+            options={requiredTimeChoices}
+          />
         </label>
         <label>
           <span>Status:</span>
