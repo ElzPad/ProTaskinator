@@ -1,7 +1,7 @@
 import { timestamp } from '../firebase/config';
 
 export interface Task {
-  id: string;
+  id?: string;
   title: string;
   dueDate: timestamp;
   notes: string;
