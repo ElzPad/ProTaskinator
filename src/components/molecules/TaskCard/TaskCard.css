@@ -1,6 +1,6 @@
 .taskCard .label {
   font-size: 0.9em;
-  color: rebeccapurple;
+  color: var(--primary-color);
   text-decoration: underline;
 }
 
