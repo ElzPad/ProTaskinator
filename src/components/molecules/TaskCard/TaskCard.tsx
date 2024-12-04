@@ -27,17 +27,27 @@ export default function TaskCard({ taskInfo }: TaskCardProps) {
       </div>
       <div className="cardRow">
         <div className="cardColumn">
-          <p className="label">People:</p>
+          <p className="label">People ({taskInfo.peopleList.length}):</p>
           <ul>
             {taskInfo.peopleList.map((p) => {
-              return <p>{p}</p>;
+              return (
+                <span key={p}>
+                  <span>{p}</span>
+                  <br />
+                </span>
+              );
             })}
           </ul>
         </div>
         <div className="cardColumn">
-          <p className="label">Tags:</p>
-          {taskInfo.tags.map((tag) => {
-            return <span>{tag}</span>;
+          <p className="label">Tags ({taskInfo.tagsList?.length}):</p>
+          {taskInfo.tagsList?.map((tag) => {
+            return (
+              <span key={tag}>
+                <span>{tag}</span>
+                <br />
+              </span>
+            );
           })}
         </div>
       </div>
