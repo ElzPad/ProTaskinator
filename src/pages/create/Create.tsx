@@ -1,6 +1,10 @@
 import './Create.css';
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { useFirestore } from '../../hooks/useFirestore';
+import { Task } from '../../types/task';
+import { useNavigate } from 'react-router-dom';
+import { timestamp } from '../../firebase/config';
 
 const requiredTimeChoices = [
   { value: '5 minutes', label: '5 minutes' },
@@ -11,6 +15,7 @@ const requiredTimeChoices = [
 
 export default function Create() {
   const [title, setTitle] = useState<string>('');
+  const [dueDate, setDueDate] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
   const [peopleList, setPeopleList] = useState<string[]>([]);
   const [newPerson, setNewPerson] = useState<string>('');
@@ -19,9 +24,24 @@ export default function Create() {
   const [requiredTime, setRequiredTime] = useState<string>('');
   const [status, setStatus] = useState<string>('');
 
+  const { addDocument, response } = useFirestore('tasks');
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(title, notes, peopleList, tagsList, requiredTime, status);
+    const task: Task = {
+      title,
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      notes,
+      peopleList,
+      tagsList,
+      status,
+      requiredTime,
+    };
+    addDocument<Task>(task);
+    if (!response.error) {
+      navigate('/');
+    }
   };
 
   const addNewPerson = (e: React.FormEvent) => {
@@ -64,6 +84,15 @@ export default function Create() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        <label>
+          <span>Due date:</span>
+          <input
+            required
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
           />
         </label>
         <label>
