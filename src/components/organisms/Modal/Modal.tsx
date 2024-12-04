@@ -2,7 +2,11 @@ import { useState } from 'react';
 import './Modal.css';
 import { ChildrenProps } from '../../../types/global';
 
-export default function Modal({ children }: ChildrenProps) {
+export default function Modal({
+  children,
+  status,
+  title,
+}: ChildrenProps & { status: string; title: string }) {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const toggleIsOpened = () => {
@@ -13,11 +17,16 @@ export default function Modal({ children }: ChildrenProps) {
 
   return (
     <>
-      {!isOpened && (
-        <button className="btn" onClick={toggleIsOpened}>
-          Open
-        </button>
-      )}
+      <button
+        className="btn"
+        onClick={toggleIsOpened}
+        style={{
+          backgroundColor: status == 'ToDo' ? 'red' : 'green',
+          textDecorationLine: status == 'ToDo' ? 'none' : 'line-through',
+        }}
+      >
+        {title}
+      </button>
       {isOpened && (
         <div className="modalOverlay" onClick={toggleIsOpened}>
           <div className="modalContainer" onClick={(e) => e.stopPropagation()}>
