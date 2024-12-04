@@ -8,6 +8,7 @@ import Login from './pages/login/Login';
 import Task from './pages/task/Task';
 import { useAuthContext } from './hooks/useAuthContext';
 import Create from './pages/create/Create';
+import Sidebar from './components/molecules/Sidebar/Sidebar';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       {authIsReady && (
         <BrowserRouter>
+          {user && <Sidebar />}
           <div className="container">
             <Navbar />
             <Routes>
