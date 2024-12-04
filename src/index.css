@@ -3,9 +3,14 @@
 :root {
   --bg-color-light: #f4f4f4;
   --bg-color-dark: #001c37;
-
   --heading-color-light: #000000;
   --heading-color-dark: #ffffff;
+
+  --heading-color: #444;
+  --text-color: #999;
+  --primary-color: #8d69f1;
+  --highlight-color: #d13267;
+  --bg-color: #f4f4f4;
 }
 
 body {
