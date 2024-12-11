@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.2.0",
     "firebase": "^11.0.2",
     "firebase-tools": "^13.27.0",
     "prettier-plugin-import-sort": "^0.0.7",
