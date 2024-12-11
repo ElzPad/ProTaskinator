@@ -5,6 +5,7 @@ import { useFirestore } from '../../hooks/useFirestore';
 import { Task } from '../../types/task';
 import { useNavigate } from 'react-router-dom';
 import { timestamp } from '../../firebase/config';
+import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
 
 const requiredTimeChoices = [
   { value: '5 minutes', label: '5 minutes' },
@@ -105,46 +106,64 @@ export default function Create() {
         </label>
         <label>
           <span>People:</span>
-          <input
-            type="text"
-            value={newPerson}
-            onChange={(e) => setNewPerson(e.target.value)}
-          />
-          <button
-            type="button"
-            className="btn"
-            onClick={(e) => addNewPerson(e)}
-          >
-            Add
-          </button>
+          <div style={{ display: 'flex' }}>
+            <input
+              type="text"
+              value={newPerson}
+              onChange={(e) => setNewPerson(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  addNewPerson(e);
+                }
+              }}
+            />
+            <button
+              type="button"
+              className="btn"
+              onClick={(e) => addNewPerson(e)}
+            >
+              Add
+            </button>
+          </div>
           <ul>
             {peopleList.map((person) => {
               return (
-                <span key={person}>
-                  <span> {person}</span>
-                  <span onClick={() => removePerson(person)}> (X),</span>
-                </span>
+                <ChipsBar
+                  key={person}
+                  content={person}
+                  handleRemove={() => removePerson(person)}
+                />
               );
             })}
           </ul>
         </label>
         <label>
           <span>Tags:</span>
-          <input
-            type="text"
-            value={newTag}
-            onChange={(e) => setNewTag(e.target.value)}
-          />
-          <button type="button" className="btn" onClick={(e) => addNewTag(e)}>
-            Add
-          </button>
+          <div style={{ display: 'flex' }}>
+            <input
+              type="text"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  addNewTag(e);
+                }
+              }}
+            />
+            <button type="button" className="btn" onClick={(e) => addNewTag(e)}>
+              Add
+            </button>
+          </div>
           <ul>
             {tagsList.map((tag) => {
               return (
-                <span key={tag}>
-                  <span> {tag}</span>
-                  <span onClick={() => removeTag(tag)}> (X),</span>
-                </span>
+                <ChipsBar
+                  key={tag}
+                  content={tag}
+                  handleRemove={() => removeTag(tag)}
+                />
               );
             })}
           </ul>
