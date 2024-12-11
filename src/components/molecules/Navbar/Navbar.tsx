@@ -39,9 +39,6 @@ export default function Navbar() {
         {user && (
           <>
             <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
               {!isLoading && (
                 <button className="btn" onClick={() => logout()}>
                   Logout
