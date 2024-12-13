@@ -1,10 +1,10 @@
 import TaskTable from '../../components/organisms/TaskTable/TaskTable';
 import { useCollection } from '../../hooks/useCollection';
-import { Task } from '../../types/task';
+import { TaskType } from '../../types/task';
 import './Home.css';
 
 export default function Home() {
-  const { documents, error, isLoading } = useCollection<Task>('tasks');
+  const { documents, error, isLoading } = useCollection<TaskType>('tasks');
 
   return (
     <div>

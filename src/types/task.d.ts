@@ -1,6 +1,6 @@
 import { timestamp } from '../firebase/config';
 
-export interface Task {
+export interface TaskType {
   id?: string;
   title: string;
   dueDate: timestamp;
