@@ -9,6 +9,7 @@ import Task from './pages/task/Task';
 import { useAuthContext } from './hooks/useAuthContext';
 import Create from './pages/create/Create';
 import Sidebar from './components/molecules/Sidebar/Sidebar';
+import Tag from './pages/tag/Tag';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -32,6 +33,10 @@ function App() {
               <Route
                 path="/task/:id"
                 element={user ? <Task /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/tag/:id"
+                element={user ? <Tag /> : <Navigate to="/login" />}
               />
               <Route
                 path="/signup"
