@@ -77,6 +77,7 @@ export default function Create() {
 
   return (
     <div>
+      <h2 className="pageTitle">Create new task</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Title:</span>

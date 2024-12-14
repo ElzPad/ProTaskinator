@@ -17,6 +17,7 @@ export default function Task() {
       {error && <div className="error">{error}</div>}
       {document && (
         <>
+          <h2 className="pageTitle">Task: {document.title}</h2>
           <div style={{ display: 'flex', gap: '10px' }}>
             <InfoCard label="Title">
               <p>{document.title}</p>

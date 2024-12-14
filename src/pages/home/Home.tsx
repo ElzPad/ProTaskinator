@@ -8,6 +8,7 @@ export default function Home() {
 
   return (
     <div>
+      <h2 className="pageTitle">Dashboard</h2>
       {error && <div className="error">{error}</div>}
       {isLoading && <div>Loading...</div>}
       {documents && <TaskTable tasks={documents} />}
