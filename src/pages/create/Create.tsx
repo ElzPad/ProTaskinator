@@ -2,7 +2,7 @@ import './Create.css';
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { useFirestore } from '../../hooks/useFirestore';
-import { Task } from '../../types/task';
+import { TaskType } from '../../types/task';
 import { useNavigate } from 'react-router-dom';
 import { timestamp } from '../../firebase/config';
 import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
@@ -30,7 +30,7 @@ export default function Create() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const task: Task = {
+    const task: TaskType = {
       title,
       dueDate: timestamp.fromDate(new Date(dueDate)),
       notes,
@@ -39,7 +39,7 @@ export default function Create() {
       status,
       requiredTime,
     };
-    addDocument<Task>(task);
+    addDocument<TaskType>(task);
     if (!response.error) {
       navigate('/');
     }
