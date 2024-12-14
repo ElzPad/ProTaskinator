@@ -53,9 +53,11 @@ ul {
   background-color: var(--primary-color);
   border-bottom: px solid grey;
   border-radius: 16px;
-  border-width: 0 0 4px;  
+  border-width: 0 0 4px;
+  display: inline-block;
   padding: 5px;
   text-align: center;
+  width: fit-content;
 }
 .linkBtn:active {
   border-bottom: 1px solid white;
