@@ -1,15 +1,23 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './Task.css';
 import { useDocument } from '../../hooks/useDocument';
 import { TaskType } from '../../types/task';
 import InfoCard from '../../components/atoms/InfoCard/InfoCard';
+import { useFirestore } from '../../hooks/useFirestore';
 
 export default function Task() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { document, isLoading, error } = useDocument<TaskType>(
     'tasks',
     id ? id : ''
   );
+  const { deleteDocument } = useFirestore('tasks');
+
+  const handleDelete = (e: React.FormEvent) => {
+    deleteDocument(id ? id : '');
+    navigate('/');
+  };
 
   return (
     <div>
@@ -54,6 +62,11 @@ export default function Task() {
             <InfoCard label="Required Time">
               <p>{document.requiredTime}</p>
             </InfoCard>
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <button className="btn" onClick={handleDelete}>
+              Delete task
+            </button>
           </div>
         </>
       )}
