@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   DocumentData,
   WithFieldValue,
 } from 'firebase/firestore';
@@ -73,9 +75,21 @@ export const useFirestore = (collectionId: string) => {
     }
   };
 
+  const deleteDocument = async (documentId: string) => {
+    dispatch({ type: 'IS_PENDING' });
+
+    try {
+      const documentRef = doc(projectFirestore, collectionId, documentId);
+      await deleteDoc(documentRef);
+      dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' });
+    } catch (err) {
+      dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not delete' });
+    }
+  };
+
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { addDocument, response };
+  return { addDocument, deleteDocument, response };
 };
