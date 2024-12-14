@@ -15,6 +15,7 @@ export default function Task() {
   const { deleteDocument } = useFirestore('tasks');
 
   const handleDelete = (e: React.FormEvent) => {
+    e.preventDefault();
     deleteDocument(id ? id : '');
     navigate('/');
   };

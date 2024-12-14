@@ -1,9 +1,9 @@
 import './TaskCard.css';
-import { Task } from '../../../types/task';
+import { TaskType } from '../../../types/task';
 import { useEffect, useState } from 'react';
 
 interface TaskCardProps {
-  taskInfo: Task;
+  taskInfo: TaskType;
 }
 
 export default function TaskCard({ taskInfo }: TaskCardProps) {
@@ -29,7 +29,7 @@ export default function TaskCard({ taskInfo }: TaskCardProps) {
         <div className="cardColumn">
           <p className="label">People ({taskInfo.peopleList.length}):</p>
           <ul>
-            {taskInfo.peopleList.map((p) => {
+            {taskInfo.peopleList.map((p: string) => {
               return (
                 <span key={p}>
                   <span>{p}</span>
@@ -41,7 +41,7 @@ export default function TaskCard({ taskInfo }: TaskCardProps) {
         </div>
         <div className="cardColumn">
           <p className="label">Tags ({taskInfo.tagsList?.length}):</p>
-          {taskInfo.tagsList?.map((tag) => {
+          {taskInfo.tagsList?.map((tag: string) => {
             return (
               <span key={tag}>
                 <span>{tag}</span>

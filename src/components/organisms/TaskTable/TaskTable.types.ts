@@ -1,5 +1,5 @@
-import { Task } from '../../../types/task';
+import { TaskType } from '../../../types/task';
 
 export interface TaskTableProps {
-  tasks: Task[];
+  tasks: TaskType[];
 }
