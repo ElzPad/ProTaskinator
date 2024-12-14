@@ -64,7 +64,7 @@ export default function Create() {
     e.preventDefault();
     if (newTag.length > 0 && !tagsList.includes(newTag)) {
       setTagsList((prevList) => {
-        return [...prevList, '#' + newTag];
+        return [...prevList, newTag];
       });
     }
     setNewTag('');
@@ -161,7 +161,7 @@ export default function Create() {
               return (
                 <ChipsBar
                   key={tag}
-                  content={tag}
+                  content={`#${tag}`}
                   handleRemove={() => removeTag(tag)}
                 />
               );
