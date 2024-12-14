@@ -49,6 +49,22 @@ ul {
   background-color: black;
 }
 
+.linkBtn {
+  background-color: var(--primary-color);
+  border-bottom: px solid grey;
+  border-radius: 16px;
+  border-width: 0 0 4px;  
+  padding: 5px;
+  text-align: center;
+}
+.linkBtn:active {
+  border-bottom: 1px solid white;
+}
+.linkBtn a {
+  color: white;
+  text-decoration: none;
+}
+
 label {
   display: block;
   margin: 24px auto;
