@@ -1,10 +1,15 @@
+import { where } from 'firebase/firestore';
 import TaskTable from '../../components/organisms/TaskTable/TaskTable';
 import { useCollection } from '../../hooks/useCollection';
 import { TaskType } from '../../types/task';
 import './Home.css';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 export default function Home() {
-  const { documents, error, isLoading } = useCollection<TaskType>('tasks');
+  const { user } = useAuthContext();
+  const { documents, error, isLoading } = useCollection<TaskType>('tasks', [
+    where('createdBy.uid', '==', user?.uid),
+  ]);
 
   return (
     <div>

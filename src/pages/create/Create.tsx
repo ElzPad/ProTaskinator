@@ -6,6 +6,7 @@ import { TaskType } from '../../types/task';
 import { useNavigate } from 'react-router-dom';
 import { timestamp } from '../../firebase/config';
 import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const requiredTimeChoices = [
   { value: '5 minutes', label: '5 minutes' },
@@ -28,20 +29,30 @@ export default function Create() {
   const { addDocument, response } = useFirestore('tasks');
   const navigate = useNavigate();
 
+  const { user } = useAuthContext();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const task: TaskType = {
-      title,
-      dueDate: timestamp.fromDate(new Date(dueDate)),
-      notes,
-      peopleList,
-      tagsList,
-      status,
-      requiredTime,
-    };
-    addDocument<TaskType>(task);
-    if (!response.error) {
-      navigate('/');
+    if (!user) {
+      console.log('User not loaded');
+    } else {
+      const task: TaskType = {
+        createdBy: {
+          name: user.displayName ? user.displayName : 'User',
+          uid: user.uid,
+        },
+        title,
+        dueDate: timestamp.fromDate(new Date(dueDate)),
+        notes,
+        peopleList,
+        tagsList,
+        status,
+        requiredTime,
+      };
+      addDocument<TaskType>(task);
+      if (!response.error) {
+        navigate('/');
+      }
     }
   };
 
