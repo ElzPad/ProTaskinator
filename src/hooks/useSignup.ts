@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
-import { projectAuth } from '../firebase/config';
+import {
+  projectAuth,
+  projectFirestore,
+  projectStorage,
+} from '../firebase/config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAuthContext } from './useAuthContext';
+import { doc, setDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState<boolean>(false);
@@ -14,7 +20,8 @@ export const useSignup = () => {
   const signup = async (
     email: string,
     password: string,
-    displayName: string
+    displayName: string,
+    thumbnail: File
   ) => {
     setIsLoading(true);
     setError(null);
@@ -26,6 +33,18 @@ export const useSignup = () => {
         password
       );
       if (!res) throw new Error('Unable to complete signup');
+
+      const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
+      const fileRef = ref(projectStorage, uploadPath);
+      await uploadBytes(fileRef, thumbnail);
+      const imgUrl = await getDownloadURL(fileRef);
+      await updateProfile(res.user, { displayName, photoURL: imgUrl });
+
+      await setDoc(doc(projectFirestore, 'users', res.user.uid), {
+        online: true,
+        displayName,
+        photoURL: imgUrl,
+      });
 
       dispatch({ type: 'LOGIN', payload: res.user });
 
