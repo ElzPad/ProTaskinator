@@ -9,8 +9,17 @@ export interface TaskType {
   title: string;
   dueDate: timestamp;
   notes: string;
+  comments: CommentType[];
   peopleList: string[];
   tagsList: string[];
-  status: string;
+  status: 'ToDo' | 'In Progress' | 'Completed';
   requiredTime: string;
+}
+
+export interface CommentType {
+  createdBy: {
+    name: string;
+    uid: string;
+  };
+  content: string;
 }

@@ -36,20 +36,26 @@ export default function Home() {
       {error && <div className="error">{error}</div>}
       {isLoading && <div>Loading...</div>}
       {documents && (
-        <div>
-          <label>
-            Visualization:
-            <Select
-              value={visualization}
-              options={visualizationOptions}
-              onChange={handleChange}
-            />
-          </label>
-          {(visualization == null || visualization?.value == 'Table') && (
-            <TaskTable tasks={documents} />
-          )}
-          {visualization?.value == 'Board' && <TaskBoard tasks={documents} />}
-        </div>
+        <>
+          <div className="headerContainer">
+            <h3>Personal tasks</h3>
+            <label className="selector">
+              Visualization:
+              <Select
+                value={visualization}
+                options={visualizationOptions}
+                onChange={handleChange}
+                defaultValue={{ value: 'Table', label: 'Table' }}
+              />
+            </label>
+          </div>
+          <div>
+            {(visualization == null || visualization?.value == 'Table') && (
+              <TaskTable tasks={documents} />
+            )}
+            {visualization?.value == 'Board' && <TaskBoard tasks={documents} />}
+          </div>
+        </>
       )}
     </div>
   );

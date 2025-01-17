@@ -1,0 +1,14 @@
+.headerContainer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.selector {
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    margin: 0px;
+}

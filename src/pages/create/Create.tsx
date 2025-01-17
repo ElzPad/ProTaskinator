@@ -8,11 +8,17 @@ import { timestamp } from '../../firebase/config';
 import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
-const requiredTimeChoices = [
+const requiredTimeOptions = [
   { value: '5 minutes', label: '5 minutes' },
   { value: '30 minutes', label: '30 minutes' },
   { value: '1 hour', label: '1 hour' },
   { value: '1 week', label: '1 week' },
+];
+
+const statusOptions = [
+  { value: 'ToDo', label: 'ToDo' },
+  { value: 'In Progress', label: 'In Progress' },
+  { value: 'Completed', label: 'Completed' },
 ];
 
 export default function Create() {
@@ -24,7 +30,9 @@ export default function Create() {
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [newTag, setNewTag] = useState<string>('');
   const [requiredTime, setRequiredTime] = useState<string>('');
-  const [status, setStatus] = useState<string>('');
+  const [status, setStatus] = useState<'ToDo' | 'In Progress' | 'Completed'>(
+    'ToDo'
+  );
 
   const { addDocument, response } = useFirestore('tasks');
   const navigate = useNavigate();
@@ -46,6 +54,7 @@ export default function Create() {
         notes,
         peopleList,
         tagsList,
+        comments: [],
         status,
         requiredTime,
       };
@@ -184,16 +193,19 @@ export default function Create() {
           <span>Required time:</span>
           <Select
             onChange={(option) => setRequiredTime(option ? option.value : '')}
-            options={requiredTimeChoices}
+            options={requiredTimeOptions}
           />
         </label>
         <label>
           <span>Status:</span>
-          <input
-            required
-            type="text"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
+          <Select
+            onChange={(option) =>
+              setStatus(
+                option?.value as unknown as 'ToDo' | 'In Progress' | 'Completed'
+              )
+            }
+            options={statusOptions}
+            defaultValue={{ value: 'ToDo', label: 'ToDo' }}
           />
         </label>
         <button className="btn">Submit</button>
