@@ -1,15 +1,14 @@
 .sidebar {
-  width: 300px;
-  min-width: 300px;
-  background: var(--primary-color);
-  min-height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-  color: #fff;
+  display: flex;
 }
 .sidebarContent {
-  position: relative;
-  width: inherit;
+  width: 300px;
+  min-width: 300px;
+  left: -300px;
+  min-height: 100vh;
+  background: var(--primary-color);
+  color: #fff;
+  transition: left 0.3s ease-in-out;
 }
 .sidebar .user {
   font-weight: bold;
@@ -44,4 +43,20 @@
 }
 .sidebar .links .active img {
   filter: invert(40%);
+}
+.sidebar .toggleContainer {
+  background-color: var(--primary-color);
+  border-radius: 0 50% 50% 0;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  z-index: 1000;
+  margin-top: 20px;
+}
+.sidebar .toggleContainer .toggleIcon {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(0deg);
+}
+.sidebar.open .toggleContainer .toggleIcon {
+  transform: rotate(180deg);
 }
