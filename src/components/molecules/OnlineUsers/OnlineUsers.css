@@ -1,0 +1,55 @@
+.userList {
+    display: flex;
+}
+.userListContent {
+  width: 350px;
+  min-width: 350px;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #fbfbfb;
+  color: var(--heading-color);
+}
+.userListContent h2 {
+  text-align: right;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 1.2em;
+}
+.userListContent .userListItem {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px auto;
+}
+.userListContent .avatar {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+}
+.userListContent .onlineUser {
+  display: inline-block;
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+  background: #0ebb50;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.userList .toggleContainer {
+  background-color: var(--primary-color);
+  border-radius: 50% 0 0 50%;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  z-index: 1000;
+  margin-top: 20px;
+}
+.userList .toggleContainer .toggleIcon {
+  transition: transform 0.5s ease-in-out;
+  transform: rotate(0deg);
+}
+.userList.open .toggleContainer .toggleIcon {
+  transform: rotate(90deg);
+}

@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const { user } = useAuthContext();
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const toggleSidebar = () => {
     setIsVisible((prevState) => {

@@ -10,6 +10,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 import Create from './pages/create/Create';
 import Sidebar from './components/molecules/Sidebar/Sidebar';
 import Tag from './pages/tag/Tag';
+import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -48,6 +49,7 @@ function App() {
               />
             </Routes>
           </div>
+          {user && <OnlineUsers />}
         </BrowserRouter>
       )}
     </div>
