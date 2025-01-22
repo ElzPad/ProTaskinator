@@ -9,7 +9,7 @@ export const useLogin = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { dispatch, user } = useAuthContext();
+  const { dispatch } = useAuthContext();
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
