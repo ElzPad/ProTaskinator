@@ -6,10 +6,11 @@ import Home from './pages/home/Home';
 import Signup from './pages/signup/Signup';
 import Login from './pages/login/Login';
 import Task from './pages/task/Task';
-import { useAuthContext } from './hooks/useAuthContext';
-import Create from './pages/create/Create';
-import Sidebar from './components/molecules/Sidebar/Sidebar';
+import Chat from './pages/chat/Chat';
 import Tag from './pages/tag/Tag';
+import Create from './pages/create/Create';
+import { useAuthContext } from './hooks/useAuthContext';
+import Sidebar from './components/molecules/Sidebar/Sidebar';
 import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
               <Route
                 path="/tag/:id"
                 element={user ? <Tag /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/chat/:id"
+                element={user ? <Chat /> : <Navigate to="/login" />}
               />
               <Route
                 path="/signup"
