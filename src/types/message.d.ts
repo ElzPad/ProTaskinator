@@ -6,4 +6,5 @@ export interface MessageType {
   type: number;
   content: string;
   createdAt: timestamp;
+  isGroupChat: boolean;
 }

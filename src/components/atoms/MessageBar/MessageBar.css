@@ -1,0 +1,42 @@
+.messageBar {
+  width: 100%;
+}
+.messageContent {
+  background-color: white;
+  width: 35%;
+  min-width: 50px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 15px;
+}
+.messageBar.popup .messageContent {
+    width: 100%;
+}
+.messageBar .messageContent .messageSender {
+    font-size: 0.8em;
+    text-decoration: underline;
+    font-weight: 700;
+}
+.messageBar.sent .messageContent {
+  border: 2px solid grey;
+  margin-left: auto;
+}
+.messageBar.received .messageContent {
+  border: 2px solid var(--primary-color);
+  margin-right: auto;
+}
+.messageBar .messageContent.notification {
+  color: white;
+  font-style: italic;
+}
+.messageBar.sent .messageContent.notification {
+  background-color: grey;
+}
+.messageBar.received .messageContent.notification {
+  background-color: var(--primary-color);
+}
+.messageBar .messageContent .messageTimestamp {
+  font-size: 0.7em;
+  margin-left: auto;
+  width: fit-content;
+}
