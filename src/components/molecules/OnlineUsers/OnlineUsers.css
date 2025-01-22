@@ -1,14 +1,14 @@
 .userList {
   display: flex;
   position: fixed;
-  right: -350px;
+  right: -400px;
   min-height: 100vh;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
 }
 .userListContent {
-  width: 350px;
-  min-width: 350px;
+  width: 400px;
+  min-width: 400px;
   padding: 30px;
   box-sizing: border-box;
   background: #fbfbfb;
@@ -29,6 +29,14 @@
   align-items: center;
   margin: 20px auto;
 }
+.userListContent .userListItem a {
+  margin-left: 10px;
+  height: 30px;
+}
+.userListContent .userListItem .noIcon {
+  margin-left: 10px;
+  width: 30px;
+}
 .userListContent .avatar {
   margin-left: 10px;
   width: 40px;
@@ -42,10 +50,6 @@
   background: #0ebb50;
   border-radius: 50%;
   margin-top: 2px;
-}
-.userListItem a {
-  text-decoration: none;
-  color: inherit;
 }
 .userList .toggleContainer {
   background-color: var(--primary-color);
