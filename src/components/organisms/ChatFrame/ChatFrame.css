@@ -1,0 +1,70 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  gap: 15px;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid var(--primary-color);
+}
+.chatContainer .chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: fit-content;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 10px;
+}
+.chatContainer .chatHeader .onlineUser {
+  display: inline-block;
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+  background: #0ebb50;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.chatContainer .chatHeader .offlineUser {
+  display: inline-block;
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+  background: #ff0000;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.chatContainer .scrollableContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  padding: 10px;
+  position: relative;
+}
+.chatContainer .messagesContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.chatContainer .scrollToBottom {
+  cursor: pointer;
+  color: white;
+  background-color: var(--primary-color);
+  padding: 5px;
+  border-radius: 50%;
+  position: sticky;
+  width: fit-content;
+  height: 30px;
+  margin: 0 auto;
+  bottom: -10px;
+}
+.chatContainer .inputBar > form {
+  display: flex;
+  align-items: center;
+}
+.chatContainer .inputBar input {
+  padding: 15px;
+}

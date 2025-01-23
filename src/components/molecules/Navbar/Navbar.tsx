@@ -13,10 +13,6 @@ export default function Navbar() {
     if (error) console.log(error);
   }, [error]);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <div className="navbar">
       <ul>

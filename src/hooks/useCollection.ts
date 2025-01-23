@@ -7,11 +7,14 @@ import {
   onSnapshot,
   query as firestoreQuery,
   QueryConstraint,
+  orderBy,
 } from 'firebase/firestore';
 
 export function useCollection<Type>(
   collectionId: string,
-  _query: QueryConstraint[]
+  _query: QueryConstraint[],
+  orderByField?: string,
+  orderDirection: 'asc' | 'desc' = 'desc'
 ) {
   const [documents, setDocuments] = useState<Type[] | null>();
   const [isLoading, setIsLoading] = useState<boolean>();
@@ -25,6 +28,10 @@ export function useCollection<Type>(
       collectionId
     );
     let q = firestoreQuery(ref, ...queryConstraints);
+
+    if (orderByField) {
+      q = firestoreQuery(q, orderBy(orderByField, orderDirection));
+    }
     setIsLoading(true);
 
     let unsubscribe = onSnapshot(
@@ -35,7 +42,6 @@ export function useCollection<Type>(
           let data = { ...doc.data(), id: doc.id } as Type;
           results.push(data);
         });
-
         setDocuments(results);
         setIsLoading(false);
         setError(null);
@@ -47,7 +53,7 @@ export function useCollection<Type>(
     );
 
     return () => unsubscribe();
-  }, [collection]);
+  }, [collection, queryConstraints, orderByField, orderDirection]);
 
   return { documents, isLoading, error };
 }

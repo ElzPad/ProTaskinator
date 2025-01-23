@@ -39,7 +39,7 @@ export function useDocument<Type>(collectionId: string, documentId: string) {
     );
 
     return () => unsubscribe();
-  }, [collection, collectionId]);
+  }, [collection, collectionId, documentId]);
 
   return { document, isLoading, error };
 }
