@@ -8,7 +8,7 @@ import Login from './pages/login/Login';
 import Task from './pages/task/Task';
 import Chat from './pages/chat/Chat';
 import Tag from './pages/tag/Tag';
-import Create from './pages/create/Create';
+import CreateTask from './pages/createTask/CreateTask';
 import { useAuthContext } from './hooks/useAuthContext';
 import Sidebar from './components/molecules/Sidebar/Sidebar';
 import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
@@ -29,8 +29,8 @@ function App() {
                 element={user ? <Home /> : <Navigate to="/login" />}
               />
               <Route
-                path="/create"
-                element={user ? <Create /> : <Navigate to="/login" />}
+                path="/create-task"
+                element={user ? <CreateTask /> : <Navigate to="/login" />}
               />
               <Route
                 path="/task/:id"

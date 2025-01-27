@@ -23,7 +23,7 @@ service cloud.firestore {
       allow read, update: if request.auth.uid == resource.data.createdBy.uid;
     }
     match /messages/{message_id} {
-      allow create, update, delete: if request.auth.uid == resource.data.senderUid;
+      allow create, update, delete: if request.auth.uid == request.resource.data.senderUid;
       allow read: if request.auth.uid == resource.data.receiverUid || request.auth.uid == resource.data.senderUid;
     }
     match /projects/{project_id} {

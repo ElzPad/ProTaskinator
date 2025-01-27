@@ -30,7 +30,7 @@ export default function Sidebar() {
                   <img src={DashboardIcon} alt="dashboard icon" />
                   <span>Dashboard</span>
                 </NavLink>
-                <NavLink to="/create">
+                <NavLink to="/create-task">
                   <img src={AddIcon} alt="add project icon" />
                   <span>New Task</span>
                 </NavLink>

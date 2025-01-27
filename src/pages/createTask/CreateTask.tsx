@@ -1,4 +1,4 @@
-import './Create.css';
+import './CreateTask.css';
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { useFirestore } from '../../hooks/useFirestore';
@@ -21,7 +21,7 @@ const statusOptions = [
   { value: 'Completed', label: 'Completed' },
 ];
 
-export default function Create() {
+export default function CreateTask() {
   const [title, setTitle] = useState<string>('');
   const [dueDate, setDueDate] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
