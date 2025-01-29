@@ -50,6 +50,11 @@ export default function CreateProject() {
     if (!user) {
       console.log('User not loaded');
     } else {
+      assignedUsersInfo[user.uid] = [
+        user.displayName ? user.displayName : '',
+        user.photoURL ? user.photoURL : '',
+      ];
+
       const project: ProjectType = {
         createdBy: {
           name: user.displayName ? user.displayName : 'User',
@@ -61,7 +66,7 @@ export default function CreateProject() {
         description,
         startDate: timestamp.fromDate(new Date(startDate)),
         dueDate: timestamp.fromDate(new Date(dueDate)),
-        assignedUsers,
+        assignedUsers: [user.uid, ...assignedUsers],
         assignedUsersInfo,
         progress: {
           toDo: 0,
@@ -84,8 +89,9 @@ export default function CreateProject() {
         addMessage<MessageType>(message);
       });
 
+      console.log(projectResponse);
       if (!projectResponse.error) {
-        navigate('/');
+        navigate(`/project/44`);
       }
     }
   };
