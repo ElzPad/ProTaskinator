@@ -3,7 +3,8 @@ import { useAuthContext } from '../../../hooks/useAuthContext';
 import { NavLink } from 'react-router-dom';
 import DashboardIcon from '../../../assets/dashboardIcon.svg';
 import RightArrowIcon from '../../../assets/rightArrowIcon.svg';
-import AddIcon from '../../../assets/addIcon.svg';
+import AddProjectIcon from '../../../assets/addProjectIcon.svg';
+import AddTaskIcon from '../../../assets/addTaskIcon.svg';
 import { useState } from 'react';
 
 export default function Sidebar() {
@@ -30,9 +31,13 @@ export default function Sidebar() {
                   <img src={DashboardIcon} alt="dashboard icon" />
                   <span>Dashboard</span>
                 </NavLink>
+                <NavLink to="/create-project">
+                  <img src={AddProjectIcon} alt="add project icon" />
+                  <span>New Project</span>
+                </NavLink>
                 <NavLink to="/create-task">
-                  <img src={AddIcon} alt="add project icon" />
-                  <span>New Task</span>
+                  <img src={AddTaskIcon} alt="add task icon" />
+                  <span>New Personal Task</span>
                 </NavLink>
               </li>
             </ul>

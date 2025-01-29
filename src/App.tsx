@@ -12,6 +12,7 @@ import CreateTask from './pages/createTask/CreateTask';
 import { useAuthContext } from './hooks/useAuthContext';
 import Sidebar from './components/molecules/Sidebar/Sidebar';
 import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
+import CreateProject from './pages/createProject/CreateProject';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -31,6 +32,10 @@ function App() {
               <Route
                 path="/create-task"
                 element={user ? <CreateTask /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/create-project"
+                element={user ? <CreateProject /> : <Navigate to="/login" />}
               />
               <Route
                 path="/task/:id"
