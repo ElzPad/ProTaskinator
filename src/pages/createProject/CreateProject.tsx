@@ -91,7 +91,7 @@ export default function CreateProject() {
 
       console.log(projectResponse);
       if (!projectResponse.error) {
-        navigate(`/project/44`);
+        navigate(`/project/${projectResponse.document.id}`);
       }
     }
   };
