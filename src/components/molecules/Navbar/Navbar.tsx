@@ -1,6 +1,6 @@
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
-import Icon from '../../../assets/logoIcon.svg';
+import Icon from '../../../assets/addProjectIcon.svg';
 import { useLogout } from '../../../hooks/useLogout';
 import { useEffect } from 'react';
 import { useAuthContext } from '../../../hooks/useAuthContext';
