@@ -13,6 +13,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 import Sidebar from './components/molecules/Sidebar/Sidebar';
 import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
 import CreateProject from './pages/createProject/CreateProject';
+import Project from './pages/project/Project';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -40,6 +41,10 @@ function App() {
               <Route
                 path="/task/:id"
                 element={user ? <Task /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/project/:id"
+                element={user ? <Project /> : <Navigate to="/login" />}
               />
               <Route
                 path="/tag/:id"
