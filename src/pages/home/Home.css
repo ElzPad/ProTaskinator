@@ -5,10 +5,25 @@
     margin-bottom: 15px;
     width: 100%;
 }
-
 .selector {
     align-items: center;
     display: flex;
     gap: 5px;
     margin: 0px;
+}
+.projectsFilter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+.projectDisplayer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+.projectCardItem {
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    flex: 1;
 }
