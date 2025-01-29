@@ -10,7 +10,7 @@ export default function MessageBar(props: MessageBarProps) {
       className={`messageBar ${props.isPopupNotification ? 'popup' : props.sent ? 'sent' : 'received'}`}
     >
       <div className={`messageContent ${messageTypes[props.message.type - 1]}`}>
-        {props.message.isGroupChat && props.sent && (
+        {props.message.isGroupChat && !props.sent && (
           <div className="messageSender">{props.message.senderName}</div>
         )}
         <p>{props.message.content}</p>

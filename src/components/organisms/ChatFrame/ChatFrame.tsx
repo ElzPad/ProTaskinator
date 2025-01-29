@@ -52,12 +52,16 @@ export default function ChatFrame(props: ChatFrameProps) {
     } else {
       const message: MessageType = {
         senderUid: user.uid,
-        receiverUid: props.chattingWith.id,
+        receiverUid: props.chattingWith
+          ? props.chattingWith.id
+          : props.groupChat
+            ? props.groupChat
+            : '',
         content: newMessage,
         type: 1,
         createdAt: timestamp.fromDate(new Date()),
         senderName: user.displayName ? user.displayName : 'User',
-        isGroupChat: false,
+        isGroupChat: props.groupChat != undefined,
       };
       addDocument<MessageType>(message);
       if (!response.error) {
@@ -69,55 +73,57 @@ export default function ChatFrame(props: ChatFrameProps) {
 
   return (
     <div className="chatContainer">
-      <div
-        className="chatHeader"
-        onClick={() =>
-          console.log(
-            scrollableRef.current?.scrollTop,
-            scrollableRef.current?.clientHeight,
-            scrollableRef.current?.scrollHeight
-          )
-        }
-      >
-        {props.isLoading || props.isError ? (
-          <>
-            <Avatar src={ProfileIcon} />
-            <div>
-              <h4>...</h4>
-              <div>
-                <span
-                  className={
-                    props.chattingWith?.online ? 'onlineUser' : 'offlineUser'
-                  }
-                ></span>
-                <span>Loading...</span>
-              </div>
-            </div>
-          </>
-        ) : (
-          props.chattingWith && (
+      {props.chattingWith && (
+        <div
+          className="chatHeader"
+          onClick={() =>
+            console.log(
+              scrollableRef.current?.scrollTop,
+              scrollableRef.current?.clientHeight,
+              scrollableRef.current?.scrollHeight
+            )
+          }
+        >
+          {props.isLoading || props.isError ? (
             <>
-              <Avatar src={props.chattingWith.photoURL} />
+              <Avatar src={ProfileIcon} />
               <div>
-                <h4>{props.chattingWith.displayName}</h4>
+                <h4>...</h4>
                 <div>
                   <span
                     className={
-                      props.chattingWith.online ? 'onlineUser' : 'offlineUser'
+                      props.chattingWith?.online ? 'onlineUser' : 'offlineUser'
                     }
                   ></span>
-                  <span>
-                    {props.chattingWith.online ? 'Online' : 'Offline'}
-                  </span>
+                  <span>Loading...</span>
                 </div>
               </div>
             </>
-          )
-        )}
-      </div>
+          ) : (
+            props.chattingWith && (
+              <>
+                <Avatar src={props.chattingWith.photoURL} />
+                <div>
+                  <h4>{props.chattingWith.displayName}</h4>
+                  <div>
+                    <span
+                      className={
+                        props.chattingWith.online ? 'onlineUser' : 'offlineUser'
+                      }
+                    ></span>
+                    <span>
+                      {props.chattingWith.online ? 'Online' : 'Offline'}
+                    </span>
+                  </div>
+                </div>
+              </>
+            )
+          )}
+        </div>
+      )}
       <div className="scrollableContainer" ref={scrollableRef}>
         <div className="messagesContainer">
-          {props.isError && <p className="error">an error occurred.</p>}
+          {props.isError && <p className="error">An error occurred.</p>}
           {props.messages.length > 0 &&
             props.messages?.map((mex) => (
               <MessageBar

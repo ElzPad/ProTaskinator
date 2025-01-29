@@ -1,0 +1,16 @@
+.pageSelector {
+  display: flex;
+  gap: 20px;
+  padding-left: 10px;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+}
+.pageSelector p {
+  cursor: pointer;
+  padding: 10px;
+}
+.pageSelector p.selected {
+    border: 1px solid black;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
