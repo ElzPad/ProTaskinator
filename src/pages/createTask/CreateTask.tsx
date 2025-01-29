@@ -52,6 +52,7 @@ export default function CreateTask() {
         title,
         dueDate: timestamp.fromDate(new Date(dueDate)),
         notes,
+        projectId: '',
         peopleList,
         tagsList,
         comments: [],

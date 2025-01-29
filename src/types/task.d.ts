@@ -10,6 +10,7 @@ export interface TaskType {
   dueDate: timestamp;
   notes: string;
   comments: CommentType[];
+  projectId: string;
   peopleList: string[];
   tagsList: string[];
   status: 'ToDo' | 'In Progress' | 'Completed';
