@@ -66,7 +66,7 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
           datasets: [
             {
               data: [24, 43, 12],
-              backgroundColor: ['#FFDAB3', '#C8AAAA', '#574964'],
+              backgroundColor: ['#efebce', '#c1292e', '#235789'],
             },
           ],
         }
@@ -75,7 +75,7 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
           datasets: [
             {
               data: [1],
-              backgroundColor: ['#FFDAB3'],
+              backgroundColor: ['#efebce'],
             },
           ],
         };
@@ -108,7 +108,7 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
           <div
             style={{
               width: '100%',
-              backgroundColor: '#FFDAB3',
+              backgroundColor: '#efebce',
               borderRadius: '5px',
               height: '30px',
             }}
@@ -116,7 +116,7 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
             <div
               style={{
                 width: `${calculateTimeProgress(projectInfo.startDate.toDate(), projectInfo.dueDate.toDate())}%`,
-                backgroundColor: '#574964',
+                backgroundColor: '#235789',
                 height: '100%',
                 borderRadius: '5px',
                 textAlign: 'center',
@@ -139,15 +139,15 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
           <div
             style={{
               width: '100%',
-              backgroundColor: '#FFDAB3',
+              backgroundColor: '#efebce',
               borderRadius: '5px',
               height: '30px',
             }}
           >
             <div
               style={{
-                width: `${calculateTasksProgress(projectInfo.progress)}`,
-                backgroundColor: '#574964',
+                width: `${calculateTasksProgress(projectInfo.progress)}%`,
+                backgroundColor: '#235789',
                 height: '100%',
                 borderRadius: '5px',
                 textAlign: 'center',
