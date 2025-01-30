@@ -9,10 +9,10 @@ import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
 const requiredTimeOptions = [
-  { value: '5 minutes', label: '5 minutes' },
-  { value: '30 minutes', label: '30 minutes' },
-  { value: '1 hour', label: '1 hour' },
-  { value: '1 week', label: '1 week' },
+  { value: 'minute(s)', label: 'minute(s)' },
+  { value: 'hour(s)', label: 'hour(s)' },
+  { value: 'day(s)', label: 'day(s)' },
+  { value: 'week(s)', label: 'week(s)' },
 ];
 
 const statusOptions = [
@@ -30,6 +30,8 @@ export default function CreateTask() {
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [newTag, setNewTag] = useState<string>('');
   const [requiredTime, setRequiredTime] = useState<string>('');
+  const [timeAmount, setTimeAmount] = useState<string>('');
+  const [timeFormat, setTimeFormat] = useState<string>('minutes');
   const [status, setStatus] = useState<'ToDo' | 'In Progress' | 'Completed'>(
     'ToDo'
   );
@@ -195,13 +197,30 @@ export default function CreateTask() {
             })}
           </ul>
         </label>
-        <label>
+        <div className="timeSelector">
           <span>Required time:</span>
-          <Select
-            onChange={(option) => setRequiredTime(option ? option.value : '')}
-            options={requiredTimeOptions}
-          />
-        </label>
+          <label>
+            <input
+              type="number"
+              required
+              value={timeAmount}
+              onChange={(e) => {
+                setTimeAmount(e.target.value);
+                setRequiredTime(e.target.value + ' ' + timeFormat);
+              }}
+            />
+          </label>
+          <label>
+            <Select
+              onChange={(option) => {
+                setTimeFormat(option ? option.value : '');
+                setRequiredTime(timeAmount + ' ' + option?.value);
+              }}
+              options={requiredTimeOptions}
+              defaultValue={{ value: 'minute(s)', label: 'minute(s)' }}
+            />
+          </label>
+        </div>
         <label>
           <span>Status:</span>
           <Select

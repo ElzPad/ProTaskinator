@@ -1,0 +1,9 @@
+.timeSelector {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+
+.timeSelector > * {
+    flex: 1;
+}

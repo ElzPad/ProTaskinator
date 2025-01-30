@@ -31,6 +31,11 @@ ul {
   list-style-type: none;
 }
 
+input, textarea {
+  font-family: Poppins, sans-serif;
+  font-size: 0.9em;
+}
+
 .pageTitle {
   color: var(--heading-color-light);
   display: inline-block;
@@ -49,7 +54,7 @@ ul {
 }
 .btn:hover {
   color: #fff;
-  background-color: black;
+  background-color: var(--primary-color);
 }
 
 .linkBtn {
