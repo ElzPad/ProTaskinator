@@ -65,7 +65,11 @@ export default function ProjectCard({ projectInfo }: ProjectCardProps) {
           labels: ['ToDo', 'In progress', 'Completed'],
           datasets: [
             {
-              data: [24, 43, 12],
+              data: [
+                projectInfo.progress.toDo,
+                projectInfo.progress.inProgress,
+                projectInfo.progress.completed,
+              ],
               backgroundColor: ['#efebce', '#c1292e', '#235789'],
             },
           ],
