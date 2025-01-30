@@ -4,6 +4,7 @@ import {
   deleteDoc,
   doc,
   DocumentData,
+  updateDoc,
   WithFieldValue,
 } from 'firebase/firestore';
 import { projectFirestore } from '../firebase/config';
@@ -34,6 +35,13 @@ const firestoreReducer = (
         isPending: false,
         error: null,
         success: true,
+      };
+    case 'UPDATED_DOCUMENT':
+      return {
+        isPending: false,
+        document: action.payload,
+        success: true,
+        error: null,
       };
     case 'ERROR':
       return {
@@ -87,9 +95,27 @@ export const useFirestore = (collectionId: string) => {
     }
   };
 
+  const updateDocument = async (
+    documentId: string,
+    updates: { [key: string]: any }
+  ) => {
+    dispatch({ type: 'IS_PENDING' });
+
+    try {
+      const documentRef = doc(projectFirestore, collectionId, documentId);
+      const updatedDocument = await updateDoc(documentRef, updates);
+      dispatchIfNotCancelled({
+        type: 'UPDATED_DOCUMENT',
+        payload: updatedDocument,
+      });
+    } catch (err) {
+      dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not update' });
+    }
+  };
+
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { addDocument, deleteDocument, response };
+  return { addDocument, deleteDocument, updateDocument, response };
 };
