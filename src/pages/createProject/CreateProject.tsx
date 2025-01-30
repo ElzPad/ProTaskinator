@@ -89,9 +89,8 @@ export default function CreateProject() {
         addMessage<MessageType>(message);
       });
 
-      console.log(projectResponse);
       if (!projectResponse.error) {
-        navigate(`/project/${projectResponse.document.id}`);
+        navigate(`/`);
       }
     }
   };

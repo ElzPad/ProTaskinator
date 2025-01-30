@@ -31,7 +31,7 @@ function App() {
                 element={user ? <Home /> : <Navigate to="/login" />}
               />
               <Route
-                path="/create-task"
+                path="/create-task/:id?"
                 element={user ? <CreateTask /> : <Navigate to="/login" />}
               />
               <Route

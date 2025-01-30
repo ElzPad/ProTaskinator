@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import { useFirestore } from '../../hooks/useFirestore';
 import { TaskType } from '../../types/task';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { timestamp } from '../../firebase/config';
 import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -38,6 +38,7 @@ export default function CreateTask() {
   const navigate = useNavigate();
 
   const { user } = useAuthContext();
+  const { id: projectId } = useParams();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ export default function CreateTask() {
         title,
         dueDate: timestamp.fromDate(new Date(dueDate)),
         notes,
-        projectId: '',
+        projectId: projectId ? projectId : '',
         peopleList,
         tagsList,
         comments: [],
@@ -61,7 +62,11 @@ export default function CreateTask() {
       };
       addDocument<TaskType>(task);
       if (!response.error) {
-        navigate('/');
+        if (projectId) {
+          navigate(`/project/${projectId}`);
+        } else {
+          navigate('/');
+        }
       }
     }
   };

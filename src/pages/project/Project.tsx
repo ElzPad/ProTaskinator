@@ -150,6 +150,18 @@ export default function Project() {
                       />
                     </label>
                   </div>
+                  <button
+                    className="btn"
+                    style={{
+                      backgroundColor: 'var(--primary-color)',
+                      color: 'white',
+                    }}
+                    onClick={() => {
+                      navigate(`/create-task/${document.id}`);
+                    }}
+                  >
+                    Add task +
+                  </button>
                   <div>
                     {(taskVisualization == null ||
                       taskVisualization?.value == 'Table') && (
