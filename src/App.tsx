@@ -14,6 +14,7 @@ import Sidebar from './components/molecules/Sidebar/Sidebar';
 import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
 import CreateProject from './pages/createProject/CreateProject';
 import Project from './pages/project/Project';
+import BreadcrumbNav from './components/molecules/BreadcrumbNav/BreadcrumbNav';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -25,6 +26,7 @@ function App() {
           {user && <Sidebar />}
           <div className="container">
             <Navbar />
+            {user && <BreadcrumbNav />}
             <Routes>
               <Route
                 path="/"
