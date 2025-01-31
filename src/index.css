@@ -63,15 +63,16 @@ input, textarea {
   border-radius: 16px;
   border-width: 0 0 4px;
   display: inline-block;
-  padding: 5px;
+  padding: 7px;
   text-align: center;
   width: fit-content;
+  color: white;
 }
 .linkBtn:active {
   border-bottom: 1px solid white;
 }
 .linkBtn a {
-  color: white;
+  color: inherit;
   text-decoration: none;
 }
 
