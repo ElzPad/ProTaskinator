@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { timestamp } from '../../firebase/config';
 import ChipsBar from '../../components/atoms/ChipsBar/ChipsBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { increment } from 'firebase/firestore';
 
 const requiredTimeOptions = [
   { value: 'minute(s)', label: 'minute(s)' },
@@ -37,6 +38,7 @@ export default function CreateTask() {
   );
 
   const { addDocument, response } = useFirestore('tasks');
+  const { updateDocument: updateProject } = useFirestore('projects');
   const navigate = useNavigate();
 
   const { user } = useAuthContext();
@@ -65,6 +67,9 @@ export default function CreateTask() {
       addDocument<TaskType>(task);
       if (!response.error) {
         if (projectId) {
+          updateProject(projectId, {
+            'progress.toDo': increment(1),
+          });
           navigate(`/project/${projectId}`);
         } else {
           navigate('/');

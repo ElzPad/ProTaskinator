@@ -2,6 +2,11 @@ import { TaskType } from '../../../types/task';
 import './TaskBoard.css';
 import { TaskBoardProps } from './TaskBoard.types';
 
+import ToDoIcon from '../../../assets/toDoIcon.svg';
+import InProgressIcon from '../../../assets/inProgressIcon.svg';
+import CompletedIcon from '../../../assets/completedIcon.svg';
+import TaskCard from '../../molecules/TaskCard/TaskCard';
+
 export default function TaskBoard(props: TaskBoardProps) {
   const groupedTasks = props.tasks.reduce(
     (acc, task) => {
@@ -40,29 +45,28 @@ type ColumnProps = {
 };
 
 const Column: React.FC<ColumnProps> = ({ status, tasks }) => {
+  const icons: { [key: string]: string } = {
+    ToDo: ToDoIcon,
+    'In Progress': InProgressIcon,
+    Completed: CompletedIcon,
+  };
+
   return (
-    <div
-      style={{
-        border: '1px solid #ccc',
-        flex: 1,
-        padding: '10px',
-        backgroundColor: '#f9f9f9',
-        borderRadius: '8px',
-      }}
-    >
-      <h4 style={{ textDecoration: 'underline', marginBottom: '20px' }}>
-        {status}
-      </h4>
-      {tasks.length > 0 ? (
-        tasks.map((task) => (
-          <div key={task.id} style={{ marginBottom: '10px' }}>
-            <h4>{task.title}</h4>
-            <p>{task.notes}</p>
-          </div>
-        ))
-      ) : (
-        <p>No tasks in this column</p>
-      )}
+    <div className="boardColumn">
+      <div className="columnHeader">
+        <img src={`${icons[status]}`} />
+        <h3 style={{ textDecoration: 'underline', marginBottom: '20px' }}>
+          {status}
+        </h3>
+      </div>
+
+      <div className="columnScrollable">
+        {tasks.length > 0 ? (
+          tasks.map((task) => <TaskCard taskInfo={task} key={task.id} />)
+        ) : (
+          <p>No tasks in this column</p>
+        )}
+      </div>
     </div>
   );
 };

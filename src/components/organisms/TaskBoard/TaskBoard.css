@@ -1,0 +1,16 @@
+.boardColumn {
+  border: 1px solid #ccc;
+  flex: 1;
+  padding: 20px;
+  background-color: rgb(234, 234, 234);
+  border-radius: 8px;
+}
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.columnScrollable {
+  max-height: 200vh;
+  overflow-y: auto;
+}
