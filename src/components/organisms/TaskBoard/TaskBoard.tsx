@@ -55,9 +55,7 @@ const Column: React.FC<ColumnProps> = ({ status, tasks }) => {
     <div className="boardColumn">
       <div className="columnHeader">
         <img src={`${icons[status]}`} />
-        <h3 style={{ textDecoration: 'underline', marginBottom: '20px' }}>
-          {status}
-        </h3>
+        <h3 style={{ textDecoration: 'underline' }}>{status}</h3>
       </div>
 
       <div className="columnScrollable">
