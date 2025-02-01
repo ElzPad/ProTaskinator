@@ -19,6 +19,7 @@ export default function Home() {
     isLoading: tasksLoading,
   } = useCollection<TaskType>('tasks', [
     where('createdBy.uid', '==', user?.uid),
+    where('projectId', '==', ''),
   ]);
   const {
     documents: projects,
@@ -31,18 +32,16 @@ export default function Home() {
     null
   );
   const [projectsFilter, setProjectsFilter] = useState<string>('');
-
+  const visualizationOptions: SelectOptionsType[] = [
+    { value: 'Table', label: 'Table' },
+    { value: 'Board', label: 'Board' },
+  ];
   const handleChange = (
     newValue: SingleValue<SelectOptionsType>,
     _: ActionMeta<SelectOptionsType>
   ) => {
     setVisualization(newValue);
   };
-
-  const visualizationOptions: SelectOptionsType[] = [
-    { value: 'Table', label: 'Table' },
-    { value: 'Board', label: 'Board' },
-  ];
 
   return (
     <div>
@@ -79,29 +78,34 @@ export default function Home() {
           <div className="headerContainer">
             <h2>Assigned Projects</h2>
           </div>
-          <label className="projectsFilter">
-            Search:
-            <input
-              type="text"
-              value={projectsFilter}
-              onChange={(e) => {
-                setProjectsFilter(e.target.value.toLowerCase());
-              }}
-              placeholder="insert project name"
-            />
-          </label>
+          {projects.length > 0 && (
+            <>
+              <label className="projectsFilter">
+                Search:
+                <input
+                  type="text"
+                  value={projectsFilter}
+                  onChange={(e) => {
+                    setProjectsFilter(e.target.value.toLowerCase());
+                  }}
+                  placeholder="insert project name"
+                />
+              </label>
 
-          <div className="projectDisplayer">
-            {projects
-              .filter((project) => {
-                return project.title.toLowerCase().includes(projectsFilter);
-              })
-              .map((project) => (
-                <div key={project.id} className="projectCardItem">
-                  <ProjectCard projectInfo={project} />
-                </div>
-              ))}
-          </div>
+              <div className="projectDisplayer">
+                {projects
+                  .filter((project) => {
+                    return project.title.toLowerCase().includes(projectsFilter);
+                  })
+                  .map((project) => (
+                    <div key={project.id} className="projectCardItem">
+                      <ProjectCard projectInfo={project} />
+                    </div>
+                  ))}
+              </div>
+            </>
+          )}
+          {projects.length == 0 && <p>You have no assigned projects yet.</p>}
         </>
       )}
     </div>
