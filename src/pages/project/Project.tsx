@@ -14,6 +14,7 @@ import TaskBoard from '../../components/organisms/TaskBoard/TaskBoard';
 import Select, { ActionMeta, SingleValue } from 'react-select';
 import ChatFrame from '../../components/organisms/ChatFrame/ChatFrame';
 import { MessageType } from '../../types/message';
+import WarningIcon from '../../assets/warningIcon.svg';
 
 export default function Project() {
   const { id } = useParams();
@@ -80,16 +81,23 @@ export default function Project() {
               Tasks
             </p>
             <p
-              className={visualization == 'info' ? 'selected' : ''}
-              onClick={() => setVisualization('info')}
+              className={visualization == 'documents' ? 'selected' : ''}
+              onClick={() => setVisualization('documents')}
             >
-              Info
+              Documents
             </p>
             <p
               className={visualization == 'chat' ? 'selected' : ''}
               onClick={() => setVisualization('chat')}
             >
               Chat
+            </p>
+
+            <p
+              className={visualization == 'info' ? 'selected' : ''}
+              onClick={() => setVisualization('info')}
+            >
+              Info
             </p>
           </div>
           {visualization == 'info' && (
@@ -190,6 +198,16 @@ export default function Project() {
                 />
               )}
             </>
+          )}
+          {visualization == 'documents' && (
+            <div className="inlineInfo">
+              <img src={WarningIcon} alt="Warning icon" />
+              <p>This section is currently being implemented.</p>
+              <p>
+                It will allow users to upload, save and share documents related
+                to the project.
+              </p>
+            </div>
           )}
         </>
       )}
