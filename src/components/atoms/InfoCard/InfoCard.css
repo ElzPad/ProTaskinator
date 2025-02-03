@@ -6,8 +6,3 @@
 .infoCard h4 {
   margin-bottom: 10px;
 }
-.infoCard .content {
-  border: solid 1px rgb(182, 182, 182);
-  border-radius: 14px;
-  padding: 10px;
-}
