@@ -15,6 +15,7 @@ import OnlineUsers from './components/molecules/OnlineUsers/OnlineUsers';
 import CreateProject from './pages/createProject/CreateProject';
 import Project from './pages/project/Project';
 import BreadcrumbNav from './components/molecules/BreadcrumbNav/BreadcrumbNav';
+import Page404 from './pages/page404/Page404';
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -63,6 +64,16 @@ function App() {
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/404"
+                element={user ? <Page404 /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/*"
+                element={
+                  user ? <Navigate to="/404" /> : <Navigate to="/login" />
+                }
               />
             </Routes>
           </div>

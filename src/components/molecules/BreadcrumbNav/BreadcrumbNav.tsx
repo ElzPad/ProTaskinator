@@ -11,7 +11,7 @@ export default function BreadcrumbNav() {
   };
   return (
     <>
-      {location.pathname != '/' && (
+      {location.pathname != '/' && location.pathname != '/404' && (
         <div className="routeBar" onClick={handleBackClick}>
           &lt; Go back to previous page
         </div>
