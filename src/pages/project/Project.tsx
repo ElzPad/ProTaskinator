@@ -189,12 +189,13 @@ export default function Project() {
               <div className="infoRow">
                 <div>
                   <InfoCard label="Title">
-                    <p>
-                      {document.title} {id}
-                    </p>
+                    <p>{document.title}</p>
                   </InfoCard>
-                  <InfoCard label="Notes">
+                  <InfoCard label="Brief description">
                     <p>{document.briefDescription}</p>
+                  </InfoCard>
+                  <InfoCard label="Longer description">
+                    <p>{document.description}</p>
                   </InfoCard>
                 </div>
                 <InfoCard label="Tasks distribution">
