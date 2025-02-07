@@ -32,7 +32,14 @@ export default function Task() {
               <p>{document.title}</p>
             </InfoCard>
             <InfoCard label="Due date">
-              <p>{document.dueDate.toDate().toString()}</p>
+              <p>
+                {document.dueDate.toDate().toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </p>
             </InfoCard>
           </div>
           <div>
