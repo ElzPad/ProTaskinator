@@ -17,10 +17,12 @@ export default function Home() {
     documents: tasks,
     error: tasksError,
     isLoading: tasksLoading,
-  } = useCollection<TaskType>('tasks', [
-    where('createdBy.uid', '==', user?.uid),
-    where('projectId', '==', ''),
-  ]);
+  } = useCollection<TaskType>(
+    'tasks',
+    [where('createdBy.uid', '==', user?.uid), where('projectId', '==', '')],
+    'status',
+    'desc'
+  );
   const {
     documents: projects,
     error: projectsError,

@@ -9,9 +9,12 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 export default function Home() {
   const { id } = useParams();
   const { user } = useAuthContext();
-  const { documents, error, isLoading } = useCollection<TaskType>('tasks', [
-    where('createdBy.uid', '==', user?.uid),
-  ]);
+  const { documents, error, isLoading } = useCollection<TaskType>(
+    'tasks',
+    [where('createdBy.uid', '==', user?.uid)],
+    'status',
+    'desc'
+  );
 
   return (
     <div>

@@ -62,7 +62,12 @@ export default function Project() {
     documents: tasks,
     error: tasksError,
     isLoading: tasksLoading,
-  } = useCollection<TaskType>('tasks', [where('projectId', '==', id)]);
+  } = useCollection<TaskType>(
+    'tasks',
+    [where('projectId', '==', id)],
+    'status',
+    'desc'
+  );
 
   const [taskVisualization, setTaskVisualization] =
     useState<SelectOptionsType | null>(null);
