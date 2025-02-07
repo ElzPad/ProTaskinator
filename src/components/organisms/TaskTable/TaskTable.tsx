@@ -103,10 +103,10 @@ export default function TaskTable(props: TaskTableProps) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {sliceText(t.title, 30)}
+                  {sliceText(t.title, 20)}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {sliceText(t.notes, 30)}
+                  {sliceText(t.notes, 20)}
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {sliceText(t.requiredTime, 30)}

@@ -67,8 +67,14 @@ export default function CreateTask() {
       addDocument<TaskType>(task);
       if (!response.error) {
         if (projectId) {
+          const updateResource =
+            task.status === 'ToDo'
+              ? 'progress.toDo'
+              : task.status === 'In Progress'
+                ? 'progress.inProgress'
+                : 'progress.completed';
           updateProject(projectId, {
-            'progress.toDo': increment(1),
+            [updateResource]: increment(1),
           });
           navigate(`/project/${projectId}`);
         } else {
